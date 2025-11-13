@@ -1,280 +1,145 @@
-# 🕹 **MANUAL DE USUARIO – Controles y Funciones del Proyecto 3D**
+# 🕹 MANUAL DE USUARIO – Controles y funciones del proyecto 3D[1]
 
-Este manual explica **todas las teclas y acciones** disponibles dentro de la aplicación 3D desarrollada con GLFW + OpenGL.
-Incluye movimiento, cámaras, animaciones, interacción, visualización, sonido y funciones auxiliares.
+Este manual reúne todas las teclas y acciones disponibles en la aplicación 3D con GLFW + OpenGL: movimiento, cámaras, interacción, visualización, audio y utilidades de cámara/objetivos.[1]
 
----
+***
 
-# ⭐ 1. **Controles del Personaje (Movimiento)**
+# ⭐ 1. Controles del personaje (movimiento)[1]
 
-### **W**
+### W[1]
+Avanzar cuando está activa la cámara libre de 1ra persona o el objetivo movible en 3ra persona.[1]
 
-Avanzar.
+### S[1]
+Retroceder cuando está activa la cámara libre de 1ra persona o el objetivo movible en 3ra persona.[1]
 
-### **S**
+### A[1]
+Mover a la izquierda (strafe) en 1ra persona o desplazar el objetivo hacia su izquierda en 3ra persona.[1]
 
-Retroceder.
+### D[1]
+Mover a la derecha (strafe) en 1ra persona o desplazar el objetivo hacia su derecha en 3ra persona.[1]
 
-### **A**
+### Shift (izq/der)[1]
+Aumenta temporalmente la velocidad de movimiento (aprox. 3x) mientras se mantiene presionada.[1]
 
-Mover a la izquierda (strafe).
+### Ctrl (izq/der)[1]
+Reduce temporalmente la velocidad de movimiento (caminar lento) mientras se mantiene presionada.[1]
 
-### **D**
+***
 
-Mover a la derecha (strafe).
+# ⭐ 2. Control de cámara – primera y tercera persona[1]
 
-### **Shift Izquierdo**
+### F1[1]
+Activar cámara de 3ra persona orbital (la cámara orbita al objetivo actual y el ratón controla la órbita).[1]
 
-Correr / aumentar velocidad de movimiento.
+### F2[1]
+Activar cámara libre de 1ra persona (el ratón controla yaw/pitch de la vista en primera persona).[1]
 
-### **Ctrl Izquierdo**
+### Mouse (1ra persona)[1]
+Girar libremente la cámara (yaw y pitch) mientras te desplazas con WASD y límites de altura aplicados.[1]
 
-Movimiento lento / caminar.
+### Mouse (3ra persona)[1]
+Orbitado alrededor del objetivo activo: horizontal para giro alrededor del objetivo y vertical para altura del ángulo.[1]
 
-### **Espacio**
+### Rueda del mouse[1]
+Zoom de la cámara ajustando el FOV a través del scroll del ratón.[1]
 
-Saltar (si está implementado en `HandleMovementKeys`).
+***
 
----
+# ⭐ 3. Interacción[1]
 
-# ⭐ 2. **Control de Cámara – Primera y Tercera Persona**
+### E[1]
+Interactuar con objetos cercanos del entorno (por ejemplo, abrir/cerrar la puerta manual si la apertura automática está desactivada).[1]
 
-### **C**
+### T[1]
+Alternar apertura automática de la puerta por proximidad (cuando está activa, la puerta reacciona a la distancia).[1]
 
-Alternar entre:
+***
 
-* **1ra persona**
-* **3ra persona orbital**
+# ⭐ 4. Animaciones y keyframes (si está habilitado)[1]
 
-### **Mouse (1ra persona)**
+### P[1]
+Reproducir la secuencia de keyframes grabados cuando exista una animación configurada.[1]
 
-* Girar la cámara libremente (yaw y pitch).
+### L[1]
+Guardar un keyframe o limpiar el estado según la implementación disponible en tu build actual.[1]
 
-### **Mouse (3ra persona)**
+Nota: Este proyecto prioriza animaciones procedurales (puerta, multinstancia de personajes y UpdateSofi); la disponibilidad de edición de keyframes depende de la configuración activa.[1]
 
-La cámara orbita alrededor del personaje.
+***
 
-* Movimiento horizontal → gira alrededor del personaje.
-* Movimiento vertical → cambia la altura del ángulo.
-* Con inversión activada:
+# ⭐ 5. Control de Sofi (personaje animado)[1]
 
-  * X invertido
-  * Y invertido
+### Flechas ← ↑ ↓ →[1]
+Mover la posición del objetivo Sofi cuando está seleccionado como objetivo activo en 3ra persona (usa su yaw actual para adelante/derecha).[1]
 
-### **Rueda del Mouse**
+### Ratón (3ra persona)[1]
+El giro horizontal del ratón ajusta el yaw de Sofi cuando Sofi es el objetivo activo, manteniendo alineados vista y movimiento.[1]
 
-Acerca o aleja la cámara (zoom).
+***
 
----
+# ⭐ 6. Abrir / cerrar puertas[1]
 
-# ⭐ 3. **Interacción**
+### E (manual)[1]
+Si estás cerca, abre o cierra la puerta manualmente cuando la apertura automática esté desactivada.[1]
 
-### **E**
+### T (automática)[1]
+Activa o desactiva la apertura automática por proximidad para la puerta del museo.[1]
 
-Interactuar con objetos del entorno.
+***
 
-Usos visibles en código:
+# ⭐ 7. Visualización – sólido / líneas / puntos[1]
 
-* Activar puertas automáticas.
-* Mostrar overlays (“Presione E”).
-* Iniciar o detener animaciones o keyframes.
+### N[1]
+Modo sólido (relleno) para el render normal de la escena.[1]
 
----
+### M[1]
+Modo líneas (wireframe) para depurar superficies y topología.[1]
 
-# ⭐ 4. **Animaciones y Keyframes**
+### B[1]
+Modo puntos para visualizar vértices de las mallas.[1]
 
-### **O**
+***
 
-Guardar un keyframe en el índice actual.
+# ⭐ 8. Audio[1]
 
-### **P**
+- Sonidos de pasos: Se reproducen automáticamente a intervalos al detectar movimiento continuo del objetivo/cámara según el temporizador interno.[1]
+- Variación: Cada paso elige aleatoriamente uno de tres archivos para evitar repetición perceptible.[1]
+- Silencio global: El audio maestro puede silenciarse o reactivarse según el control de volumen global configurado en el proyecto.[1]
 
-Reproducir los keyframes grabados.
+***
 
-### **L**
+# ⭐ 9. Orbit targets (cambio de objetivo de cámara orbital)[1]
 
-Limpiar / resetear los keyframes.
+### 9 / 0[1]
+Cambiar entre objetivos preconfigurados (por ejemplo, Sofi, puerta, ventilador) y actualizar de inmediato la órbita de la cámara.[1]
 
-*(Todas estas teclas afectan las variables `KeyFrame`, `play`, `FrameIndex`, etc.)*
+Nota: Los objetivos marcados como movibles pueden desplazarse con las flechas; los no movibles sirven solo para enfocar/visitar con la cámara.[1]
 
----
+***
 
-# ⭐ 5. **Control de Sofi (personaje animado secundario)**
+# ⭐ 10. Controles globales y de ventana[1]
 
-El script indica movimiento y animaciones en `UpdateSofi()`.
+### ESC[1]
+Cerrar la aplicación de forma segura.[1]
 
-### **Flechas ← ↑ ↓ →**
+Límite de altura: La cámara nunca bajará de y = 2 en 1ra y 3ra persona gracias a un clamp aplicado tras cada actualización de posición.[1]
 
-Mover la posición objetivo de Sofi (OrbitTarget).
+***
 
-### **H**
+# ⭐ 11. Debug / desarrollo[1]
 
-Reiniciar posición de Sofi.
+- Cambios de modo de dibujo (N/M/B) permiten inspección rápida de la escena sin recompilar.[1]
+- La selección de objetivos (9/0) ayuda a validar colisiones locales, iluminación y alineación de instancias en áreas específicas.[1]
 
-*(Basado en `OrbitTarget.movable` y funciones de movimiento).*
+***
 
----
+# ⭐ Resumen rápido de controles[1]
 
-# ⭐ 6. **Abrir / Cerrar Puertas**
+- Movimiento: W, A, S, D; Shift acelera; Ctrl desacelera.[1]
+- Cámara: F1 3ra persona, F2 1ra persona; mouse para rotar; scroll para zoom.[1]
+- Interacción: E abrir/cerrar; T auto-puerta por proximidad.[1]
+- Dibujo: N sólido; M líneas; B puntos.[1]
+- Objetivos: 9/0 cambiar objetivo orbital; flechas mueven el objetivo activo si es movible.[1]
+- Audio: pasos automáticos al moverte; volumen maestro conmutado según configuración global.[1]
 
-Se activa automática o manualmente.
-
-### **E**
-
-* Si estás cerca → abre o cierra la puerta.
-* También activa el overlay “Presione E”.
-
-La puerta también se abre si **te acercas** (proximidad automática).
-
----
-
-# ⭐ 7. **Visualización – Modo Malla / Aristas / Puntos**
-
-El renderizador permite cambiar cómo se dibujan los objetos:
-
-### **N**
-
-Modo *malla* (`GL_LINE`).
-
-### **M**
-
-Modo *aristas* (wireframe reforzado).
-
-### **B**
-
-Modo *puntos* (`GL_POINT`).
-
-Además:
-
-### **, (coma)**
-
-Disminuir grosor de líneas.
-
-### **. (punto)**
-
-Aumentar grosor de líneas.
-
-### **; (punto y coma)**
-
-Disminuir tamaño de puntos.
-
-### **' (comilla)**
-
-Aumentar tamaño de puntos.
-
----
-
-# ⭐ 8. **Audio**
-
-### **V**
-
-Mutear o desmutear todo el audio.
-
-### **G**
-
-Reducir volumen maestro.
-
-### **H**
-
-Aumentar volumen maestro.
-
-### **BARRA ESPACIADORA (si está cerca del suelo y en movimiento)**
-
-Activa sonidos de paso automáticos (system interno).
-
-*(Los pasos dependen de velocidad y deltaTime).*
-
----
-
-# ⭐ 9. **Sistema de Guardado / Captura**
-
-### **F2**
-
-Guardar un frame (captura) con `saveFrame()`.
-
-*(El archivo se guarda en el directorio del proyecto.)*
-
-### **F1**
-
-Restaurar elementos a su estado inicial (`resetElements()`).
-
----
-
-# ⭐ 10. **Orbit Targets (Cambio de objetivo de cámara orbital)**
-
-Si hay varios objetivos de cámara:
-
-### **Tab**
-
-Cambiar entre objetivos preconfigurados en `gTargets`.
-
----
-
-# ⭐ 11. **Controles Globales y de Ventana**
-
-### **ESC**
-
-Cerrar la aplicación.
-
-### **Alt + Enter**
-
-(Depende del comportamiento de la ventana) Cambiar a fullscreen en algunos sistemas.
-
----
-
-# ⭐ 12. **Debug / Desarrollo (si está habilitado)**
-
-### **K**
-
-Interpolación para keyframes (`interpolation()`).
-
-### **F3**
-
-Mostrar información de resolución / debug.
-
-### **1, 2, 3...**
-
-Cambiar shaders o materiales (si se conectaron a `HandleActionKeys`).
-
----
-
-# ⭐ **RESUMEN RÁPIDO DE CONTROLES**
-
-### **Movimiento**
-
-W, A, S, D – mover
-Shift – correr
-Ctrl – caminar
-Espacio – saltar
-
-### **Cámara**
-
-C – cambiar cámara
-Mouse – rotar
-Scroll – zoom
-
-### **Interacción**
-
-E – interactuar
-
-### **Modo de dibujo**
-
-N/M/B – mesh / wireframe / puntos
-
-### **Audio**
-
-V – mute
-G/H – volumen − / +
-
-### **Keyframes**
-
-O – guardar
-P – reproducir
-L – limpiar
-
-### **Otros**
-
-ESC – salir
-F2 – captura
-
----
+[1](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/4522242/c4307585-d3ab-43d4-88eb-9162ae201b36/ProyectoFinal.txt)
